@@ -1,11 +1,20 @@
 class Game {
-    constructor(startPage, gameOverPage, ctx) {
-        this.startPage = startPage;
-        this.gameOverPage = gameOverPage;
+    constructor(ctx) {
         this.ctx = ctx;
     }
 
-    
+    //DOCUMENT QUERIES
+    // let startPage = document.querySelector(".start-game");
+    // let gameOverPage = document.querySelector("#game-over");
+
+    handleStartGame(e) {
+        e.preventDefault();
+
+    }
+
+    // startPage.addEventListener('click', handleStartGame);
 
 
 }
+
+export default Game;
