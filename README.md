@@ -12,19 +12,26 @@ In Cat-astrophe, users will be able to:
   * Up: knock on the door
   * Left: smash attack mice on the left side of the cat
   * Right: smash attack mice on the right side of the cat
+* Click "Play Again" button when the previous game is over.
   
 In addition, this project will include:
 * A production README
 
 ## Wireframes
 https://www.figma.com/file/SDYybJ6L5S585wIjpIYE5B/Untitled?node-id=0%3A1&t=G8u130dIviWIMTcq-1
-
+* The link above contains wireframes for the Home Page, Basic Gameplay, and Game Over Page.
+* Elements that will persist: 
+  * Links to this project's Github repo and LinkedIn
+  * Controls display
+  * Title of game
+  * Highest Score
+  
 ## Technologies, Libraries, APIs
 
 ## Implementation Timeline
-* Friday: 
+* Friday afternoon and weekend:
   * Setup project directory. 
-  * Create Cat, Mouse, and Board classes.
+  * Create Cat, Mouse, and Game classes.
   * Create/find visuals for these states:
     * Cat
       * Cat in normal sitting state
@@ -34,8 +41,25 @@ https://www.figma.com/file/SDYybJ6L5S585wIjpIYE5B/Untitled?node-id=0%3A1&t=G8u13
     * Mouse
       * Mouse in normal state
       * Mouse when smashed
-* Monday:
+  * Plan what containers, canvases, other HTML elements to create in index.html file
+    * Plan content layout for these elements
+  * Be able to render the basics of home page
+  * Set up icons that link Github repo and LinkedIn, title of game, canvas for game, highest score display, controls legend, add some paw prints for decoration.
+  * Export fonts
+  
+* Monday: 
+  * Need render methods for start game and game over, that will be positioned on top of game canvas
+  * Implementation of underlying game logic 
+    * Cat = stays in center of game console 
+      * Event: keydown where e.key === "ArrowUp" / "ArrowLeft" / "ArrowRight"
+    * Mice = generated on a set time from either the left or right side of the console. 
+  * Time between each knock will be fixed - not dependent on the speed at which the user is pressing the button.
+  * Each smash not fixed - will smash right when user presses L/R key
+  
+
 * Tuesday:
+
 * Wednesday:
-* Thursday Morning:
+
+* Thursday Morning: Deploy to GitHub pages and rewrite this proposal as a production README.
  
