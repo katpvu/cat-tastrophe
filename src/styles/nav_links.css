@@ -1,0 +1,13 @@
+#nav-links {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    top: 0;
+    z-index: 50;
+}
+
+#nav-links img {
+    width: 60px;
+    height: 60px;
+}

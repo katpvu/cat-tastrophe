@@ -1,0 +1,33 @@
+.content-main {
+    position: relative;
+    background-color: #FFFFFF;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 45;
+}
+
+.content-main h1 {
+    font-family: 'Italiana', serif;
+    font-size: 64px;
+}
+
+.content-main h2 {
+    font-family: 'Italiana', serif;
+    font-size: 36px;
+}
+
+#highest-score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+}
+
+#game-title {
+    margin-bottom: 15px;
+}

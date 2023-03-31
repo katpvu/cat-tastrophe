@@ -4,10 +4,62 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./dist/main.css">
-    <script src="./dist/main.js"></script>
-    <title>Cat-astrophe</title>
+    <script src="./dist/main.js" defer></script>
+    <title>CAT-ASTROPHE</title>
 </head>
 <body>
     
+
+
+    <main class="content">
+        <header class="content-header">
+            
+        </header>
+
+        <!-- Controls Legend *needs to be position: absolute -->
+        <section class="content-side">
+            <h2>controls</h2>
+            <div class="key-button"><p>&#8593</p></div>
+            <h3>knock</h3>
+            <div id="left-right-buttons">
+                <div class="key-button"><p>&#8592</p></div>
+                <div class="key-button"><p>&#8594</p></div>
+            </div>
+            <h3>smash</h3>
+        </section>
+
+        <!-- Game console *needs to be position: relative-->
+        <section class="content-main">
+            <!-- Title of Page-->
+            <header id="game-title">
+                <h1>CAT-ASTROPHE</h1>
+            </header>
+
+            <!-- Game Console --> 
+            <div class="game-console">
+                <canvas id="game-canvas"></canvas>
+                <div id="start-game"></div> <!-- After clicking START GAME button, need to display: hidden-->
+                <div id="game-over" class="hidden"></div> <!-- initially Display: hidden-->
+            </div>
+
+            <!-- Highest Score -->
+            <div id="highest-score">
+                <h2>HIGHEST SCORE:</h2>
+                <h1>0</h1>
+            </div>
+        </section>
+
+    </main>
+
+    <header id="nav-links">
+        <!-- nav links: GitHub repo and LinkedIn-->
+        <a href="https://github.com/katpvu/cat-tastrophe" target="_blank">
+            <img src="./src/assets/icons8-github-64.png" alt="github repo">
+        </a>
+        <a href="https://www.linkedin.com/in/kathy-vu-57b50411b/" target="_blank">
+            <img src="./src/assets/icons8-linkedin-60.png" alt="linkedin profile">
+        </a>
+    </header>
+
 </body>
 </html>

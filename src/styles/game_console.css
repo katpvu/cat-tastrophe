@@ -1,0 +1,7 @@
+.game-console {
+    position: relative;
+    width: 758px;
+    height: 502px;
+    background-color: aqua;
+    border-radius: 18px;
+}

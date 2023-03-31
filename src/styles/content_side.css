@@ -1,0 +1,40 @@
+.content-side {
+    position: absolute;
+    z-index: 60;
+    top: 30%;
+    left: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.key-button {
+    width: 60px;
+    height: 60px;
+    background-color: #F2F2F2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 5px 5px rgb(113, 113, 113);
+    border: 1px solid #B1B1B1;
+}
+
+.key-button p {
+    font-size: 20px;
+    color: #8B8181;
+}
+
+#left-right-buttons {
+    display: flex;
+}
+
+.content-side h2, h3 {
+    font-family: 'KoHo', sans-serif;
+}
+
+.content-side h2 {
+    font-size: 36px;
+    letter-spacing: 1px;
+}
