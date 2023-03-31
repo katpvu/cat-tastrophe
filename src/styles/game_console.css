@@ -2,6 +2,16 @@
     position: relative;
     width: 758px;
     height: 502px;
-    background-color: aqua;
+    /* background-color: aqua; */
     border-radius: 18px;
+    z-index: 45;
+}
+
+#game-canvas {
+    position: relative;
+    width: 758px;
+    height: 502px;
+    border-radius: 18px;
+    z-index: 50;
+    /* background-color: blue; */
 }
