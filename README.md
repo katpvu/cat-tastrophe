@@ -18,8 +18,8 @@ In addition, this project will include:
 * A production README
 
 ## Wireframes
-https://www.figma.com/file/SDYybJ6L5S585wIjpIYE5B/Untitled?node-id=0%3A1&t=G8u130dIviWIMTcq-1
-* The link above contains wireframes for the Home Page, Basic Gameplay, and Game Over Page.
+[Link to Wireframes](https://www.figma.com/file/SDYybJ6L5S585wIjpIYE5B/Cat-astrophe-Wireframe?node-id=0%3A1&t=opDBz5HAaghEkgOK-1)
+* Wireframes for the Home Page, Basic Gameplay, and Game Over Page.
 * Elements that will persist: 
   * Links to this project's Github repo and LinkedIn
   * Controls display
@@ -27,6 +27,8 @@ https://www.figma.com/file/SDYybJ6L5S585wIjpIYE5B/Untitled?node-id=0%3A1&t=G8u13
   * Highest Score
   
 ## Technologies, Libraries, APIs
+* Canvas
+* Vanilla DOM Manipulation
 
 ## Implementation Timeline
 * Friday afternoon and weekend:
