@@ -1,10 +1,4 @@
-/*!************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.css ***!
-  \************************************************************************************************************************************/
 @import url(https://fonts.googleapis.com/css2?family=Italiana&family=KoHo:wght@300&display=swap);
-/*!********************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/css_reset.css ***!
-  \********************************************************************************************************/
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -53,9 +47,6 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-/*!***********************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/main_content.css ***!
-  \***********************************************************************************************************/
 .content-main {
     position: relative;
     background-color: #FFFFFF;
@@ -89,9 +80,6 @@ table {
 #game-title {
     margin-bottom: 15px;
 }
-/*!**************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/start_game_over.css ***!
-  \**************************************************************************************************************/
 .start-game {
     position: absolute;
     z-index: 55;
@@ -137,9 +125,6 @@ table {
     display: none;
 }
 
-/*!********************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/nav_links.css ***!
-  \********************************************************************************************************/
 #nav-links {
     position: absolute;
     display: flex;
@@ -153,9 +138,6 @@ table {
     width: 60px;
     height: 60px;
 }
-/*!***********************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/game_console.css ***!
-  \***********************************************************************************************************/
 .game-console {
     position: relative;
     width: 758px;
@@ -208,9 +190,6 @@ table {
     letter-spacing: 1px;
     font-family: 'KoHo', sans-serif;
 }
-/*!***********************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/content_side.css ***!
-  \***********************************************************************************************************/
 .content-side {
     position: absolute;
     z-index: 60;
@@ -251,7 +230,6 @@ table {
     font-size: 36px;
     letter-spacing: 1px;
 }
-/*!****************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.css (1) ***!
-  \****************************************************************************************************************************************/
 
+
+/*# sourceMappingURL=main.css.map*/

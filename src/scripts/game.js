@@ -18,7 +18,7 @@ class Game {
         }
         catState.onload = draw.bind(this);
 
-        this.cat = new Cat(this.ctx, catState);
+        this.cat = new Cat(catState);
     }
 
 
@@ -31,23 +31,25 @@ class Game {
             if (e.keyCode === 38) {
                 if (Date.now() - this.upEventTime > 500) {
                     this.upEventTime = Date.now();
-                    this.handleUpKey();
-                    setTimeout(this.revertNormalState, 200)
+                    this.handleUpKey(this.ctx);
+                    let that = this;
+                    setTimeout( function() {
+                        that.revertNormalState(that.ctx)
+                    }, 200)
                 }
             } else if (e.keyCode === 37) { 
                 
-                this.handleLeftKey();
+                this.handleLeftKey(this.ctx);
             } else if (e.keyCode === 39) {
                 this.testBackgroundChange();
-                this.handleRightKey();
+                this.handleRightKey(this.ctx);
             }
         }
         gameConsole.addEventListener('keydown', handlers.bind(this))
     }
 
-    revertNormalState() {
-        console.log(this.cat)
-        this.cat.renderNormalState()
+    revertNormalState(ctx) {
+        this.cat.renderNormalState(ctx)
     }
 
     //this is working -- for critical moment - need to switch between normal and bright door
@@ -58,20 +60,20 @@ class Game {
 
 
     //knock - change img to knock state, increase score points 
-    handleUpKey() {
+    handleUpKey(ctx) {
         this.updateScore();
         // console.log(this.cat)
-        this.cat.knock();
+        this.cat.knock(ctx);
     }
 
     //left smash - change img to smash state - if successful, remove mouse
-    handleLeftKey() {
-        this.cat.smashLeft();
+    handleLeftKey(ctx) {
+        this.cat.smashLeft(ctx);
     }
 
     //right smash - change img to smash state - if successful, remove mouse
-    handleRightKey() {
-        this.cat.smashRight();
+    handleRightKey(ctx) {
+        this.cat.smashRight(ctx);
     }
 
     updateScore() {
