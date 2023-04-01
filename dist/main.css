@@ -172,7 +172,7 @@ table {
     z-index: 50;
 } */
 
-.background img {
+.background #bg-door {
     position: relative;
     width: 758px;
     height: 502px;
