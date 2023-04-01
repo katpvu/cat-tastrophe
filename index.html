@@ -37,16 +37,26 @@
 
             <!-- Game Console --> 
             <div class="game-console">
+                <!-- After clicking START GAME button, need to display: hidden-->
                 <div class="start-game">
                     <h2>Instructions:</h2>
                     <p>Luna wants to play! She knocks on her owner’s door to get their attention, however, a bunch of mice are trying to sabotage her! Knock on the door using the up key, while smashing away the incoming mice using the left and right keys.</p>
                     <button class="play-game-button">START GAME</button> 
                 </div> 
-                <!-- After clicking START GAME button, need to display: hidden-->
-                <div id="game-over" class="hidden">
+                
+                <div id="game-over" class="hidden"></div>
+
+                <div class="background">
+                    <img src="./assets/room-g7ec8543d0_1920.jpg" alt="background">
                     
-                </div> <!-- initially Display: hidden-->
-                <canvas id="game-canvas" width="758px" height="502px"></canvas>
+                </div>
+                
+                <ul class="top-console">
+                    <li id="score">SCORE: 0</li>
+                    <li id="lives">LIVES: 9</li>
+                </ul>
+                
+                
                 <canvas id="cat-state"></canvas>
                 
             </div>

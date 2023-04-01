@@ -1,28 +1,38 @@
 class Cat {
-    constructor() {
-        let states = {
-            normalState: "",
-
-        }
+    constructor(ctx, catState) {
+        this.ctx = ctx;
+        this.catState = catState;
     }
 
     renderNormalState() {
-        ctx.drawImage(catState, 0, 0, 234, 336, 270, 100, 236, 336)
+        this.ctx.clearRect(0, 0, 234, 336);
+        this.ctx.drawImage(this.catState, 0, 0, 234, 336, 270, 100, 236, 336)
     }
 
-    renderKnockingState() {
-        ctx.drawImage(catState, 234, 0, 234, 336, 270, 100, 236, 336)
+    knock() {
+        console.log("knckoing")
+        this.ctx.clearRect(0, 0, 234, 336);
+        this.ctx.drawImage(this.catState, 234, 0, 234, 336, 0, 0, 236, 120)
+
     }
 
-    renderSmashingState(){
+    smashLeft(){
+        console.log("left")
+        this.ctx.clearRect(0, 0, 234, 336);
 
     }
 
-    renderDizzyState(){
-        ctx.drawImage(catState, 468, 0, 234, 336, 270, 100, 236, 336)
+    smashRight(){
+        this.ctx.drawImage(this.catState, 0, 0, 234, 336, 0, 0, 236, 120)
+    }
+
+    dizzy(){
+        this.ctx.drawImage(this.catState, 468, 0, 234, 336, 270, 100, 236, 336)
     }
 
     mouseTouchCat(){
 
     }
 }
+
+export default Cat

@@ -165,23 +165,49 @@ table {
     z-index: 45;
 }
 
-#game-canvas {
+/* .background {
     position: relative;
     width: 758px;
     height: 502px;
-    border-radius: 18px;
     z-index: 50;
-    /* background-color: blue; */
-}
-
-/* #cat-state {
-    position: absolute;
-    z-index: 53;
-    background-color: blue;
-    top: 290;
-    left: 30%;
 } */
 
+.background img {
+    position: relative;
+    width: 758px;
+    height: 502px;
+    z-index: 50;
+    border-radius: 18px;
+}
+
+#cat-state {
+    position: absolute;
+    z-index: 53;
+    width: 234px;
+    height: 336px;
+    /* background-color: blue; */
+    top: 200;
+    left: 40%;
+}
+
+.top-console {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 55;
+    color: white;
+}
+
+.top-console li {
+    padding: 20px;
+    font-size: 36px;
+    letter-spacing: 1px;
+    font-family: 'KoHo', sans-serif;
+}
 /*!***********************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/content_side.css ***!
   \***********************************************************************************************************/

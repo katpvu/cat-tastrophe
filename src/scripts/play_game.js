@@ -1,3 +1,4 @@
+import Game from "./game"
 class PlayGame {
     constructor(playGameButton, game) {
         this.playGameButton = playGameButton
@@ -15,8 +16,8 @@ class PlayGame {
         startPage.classList.add("hidden");
         this.playGameButton.classList.add("hidden");
         startPage.classList.remove("start-game");
-
-        // this.game.startGame
+        
+        this.game.startGame();
     }
 }
 
