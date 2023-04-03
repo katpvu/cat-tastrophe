@@ -1,26 +1,13 @@
 import Cat from "./cat";
 
 class Game {
-    constructor(ctx) {
+    constructor(ctx, cat) {
         this.ctx = ctx;
         this.score = 0;
         this.lives = 9;
+        this.cat = cat;
         this.upEventTime = Date.now();
-        this.setUpGame();
     }
-
-    //Place cat in normal state in center
-    setUpGame() {
-        const catState = new Image();
-        catState.src = "./assets/cat_states.png";
-        let draw = function() {
-            this.ctx.drawImage(catState, 0, 0, 234, 940, 0, 0, 236, 336); 
-        }
-        catState.onload = draw.bind(this);
-
-        this.cat = new Cat(catState);
-    }
-
 
     //add event listeners for up/left/right keys and generate mice
     startGame() {
@@ -32,10 +19,6 @@ class Game {
                 if (Date.now() - this.upEventTime > 500) {
                     this.upEventTime = Date.now();
                     this.handleUpKey(this.ctx);
-                    let that = this;
-                    setTimeout( function() {
-                        that.revertNormalState(that.ctx)
-                    }, 200)
                 }
             } else if (e.keyCode === 37) { 
                 
@@ -44,6 +27,11 @@ class Game {
                 this.testBackgroundChange();
                 this.handleRightKey(this.ctx);
             }
+            //need to revert back to normal state after every move
+            let that = this;
+            setTimeout( function() {
+                that.revertNormalState(that.ctx)
+            }, 300)
         }
         gameConsole.addEventListener('keydown', handlers.bind(this))
     }
@@ -73,7 +61,8 @@ class Game {
 
     //right smash - change img to smash state - if successful, remove mouse
     handleRightKey(ctx) {
-        this.cat.smashRight(ctx);
+        this.collisionDetected(ctx)
+        // this.cat.smashRight(ctx);
     }
 
     updateScore() {
@@ -84,13 +73,27 @@ class Game {
 
     decrementLives() {
         this.lives = lives - 1
+        let currentLives = document.querySelector("#lives")
+        currentLives.innerHTML = `LIVES: ${this.lives}`
         if (this.lives === 0) {
             this.gameOver();
         }
     }
 
-    gameOver() {
+    collisionDetected(ctx) {
+        this.cat.dizzy(ctx)
+    }
 
+
+    gameOver() {
+        //render game over page
+
+
+        //update highest score if applicable
+        let currentHighestScore = document.querySelector("#session-highest-score");
+        if (this.score > currentHighestScore) {
+            currentHighestScore.innerHTML = `${this.score}`
+        }
     }
 
 }

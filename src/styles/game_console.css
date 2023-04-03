@@ -25,11 +25,10 @@
 #cat-state {
     position: absolute;
     z-index: 53;
-    width: 234px;
+    width: 758px;
     height: 336px;
     /* background-color: blue; */
-    top: 200;
-    left: 40%;
+    top: 130;
 }
 
 .top-console {
