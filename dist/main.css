@@ -94,7 +94,7 @@ table {
   \**************************************************************************************************************/
 .start-game {
     position: absolute;
-    z-index: 55;
+    z-index: 60;
     display: flex;
     justify-content: center;
     width: 100%;
@@ -106,12 +106,28 @@ table {
     align-items: center;
 }
 
+#game-title h1 {
+    color: black;
+}
+
+#game-over h1 {
+    font-size: 64;
+    color: white
+}
+
 .start-game h2, p, .play-game-button {
     letter-spacing: 2px;
     color: white;
     font-family: 'KoHo', sans-serif;
 }
 
+.score-box h2 {
+    color: black;
+}
+
+#final-score {
+    color: red
+}
 .start-game p {
     padding: 44px;
     font-size: 24px;
@@ -133,9 +149,22 @@ table {
     box-shadow: inset 0px 5px 5px #BF9E46;
 }
 
+.score-box {
+    background-color: #E3E5FE;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 494px;
+    height: 176px;
+    margin: 36px;
+}
+
 .hidden {
     display: none;
 }
+
 
 /*!********************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/nav_links.css ***!
@@ -160,17 +189,9 @@ table {
     position: relative;
     width: 758px;
     height: 502px;
-    /* background-color: aqua; */
     border-radius: 18px;
     z-index: 45;
 }
-
-/* .background {
-    position: relative;
-    width: 758px;
-    height: 502px;
-    z-index: 50;
-} */
 
 .background #bg-door {
     position: relative;
@@ -187,8 +208,18 @@ table {
     height: 336px;
     /* background-color: blue; */
     top: 130;
+    /* border-top: 1px solid blue;
+    border-bottom: 1px solid blue; */
 }
 
+#mice-canvas {
+    position: absolute;
+    z-index: 56;
+    width: 758px;
+    height: 336px;
+    top: 130;
+    /* border-top: 3px dotted red; */
+}
 .top-console {
     display: flex;
     flex-direction: row;
@@ -207,6 +238,7 @@ table {
     letter-spacing: 1px;
     font-family: 'KoHo', sans-serif;
 }
+
 /*!***********************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/content_side.css ***!
   \***********************************************************************************************************/

@@ -1,6 +1,6 @@
 .start-game {
     position: absolute;
-    z-index: 55;
+    z-index: 60;
     display: flex;
     justify-content: center;
     width: 100%;
@@ -12,12 +12,28 @@
     align-items: center;
 }
 
+#game-title h1 {
+    color: black;
+}
+
+#game-over h1 {
+    font-size: 64;
+    color: white
+}
+
 .start-game h2, p, .play-game-button {
     letter-spacing: 2px;
     color: white;
     font-family: 'KoHo', sans-serif;
 }
 
+.score-box h2 {
+    color: black;
+}
+
+#final-score {
+    color: red
+}
 .start-game p {
     padding: 44px;
     font-size: 24px;
@@ -39,6 +55,19 @@
     box-shadow: inset 0px 5px 5px #BF9E46;
 }
 
+.score-box {
+    background-color: #E3E5FE;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 494px;
+    height: 176px;
+    margin: 36px;
+}
+
 .hidden {
     display: none;
 }
+

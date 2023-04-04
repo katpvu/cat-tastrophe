@@ -6,10 +6,6 @@ class PlayGame {
         this.playGameButton.addEventListener('click', this.handleStartGame.bind(this));
     }
 
-    //DOCUMENT QUERIES
-    // let startPage = document.querySelector(".start-game");
-    // let gameOverPage = document.querySelector("#game-over");
-
     handleStartGame(e) {
         e.preventDefault();
         let startPage = document.querySelector(".start-game");

@@ -1,17 +1,28 @@
 class Cat {
 
-    constructor(catStates) {
+    constructor(catStates, catSmashes) {
         this.catStates = catStates;
+        this.catSmashes = catSmashes;
+        this.limits = [300, 500];
+        // this.catSmashes();
+    }
+
+    // catSmashes() {
+    //     let smashImage = document.createElement("img");
+    //     smashImage.src = "./assets/cat_smash.png";
+    //     document.querySelector(".game-console").appendChild(smashImage)
+    //     this.catSmashes = smashImage;
+    // }
+
+    drawState(ctx, imageLoc) { //done
+        ctx.drawImage(this.catStates, imageLoc, 0, 234, 336, 355, 0, 234, 336)
     }
 
     renderNormalState(ctx) { //done
         ctx.clearRect(355, 0, 234, 336);
+        ctx.clearRect(250, 0, 500, 400);
         let imageLoc = 0;
         this.drawState(ctx, imageLoc);
-    }
-
-    drawState(ctx, imageLoc) { //done
-        ctx.drawImage(this.catStates, imageLoc, 0, 234, 336, 355, 0, 234, 336)
     }
 
     knock(ctx) { //done
@@ -27,18 +38,15 @@ class Cat {
     }
 
     smashLeft(ctx){
-        console.log("left")
         ctx.clearRect(355, 0, 234, 336);
-
+        ctx.drawImage(this.catSmashes, 336, 220, 330, 100, 250, 215, 400, 117)
     }
 
     smashRight(ctx){
-        ctx.drawImage(this.catState, 0, 0, 234, 336, 0, 0, 236, 120)
+        ctx.clearRect(355, 0, 234, 336);
+        ctx.drawImage(this.catSmashes, 0, 218, 330, 100, 320, 215, 400, 117)
     }
 
-    mouseTouchCat(){
-
-    }
 }
 
 export default Cat

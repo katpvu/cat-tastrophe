@@ -2,17 +2,9 @@
     position: relative;
     width: 758px;
     height: 502px;
-    /* background-color: aqua; */
     border-radius: 18px;
     z-index: 45;
 }
-
-/* .background {
-    position: relative;
-    width: 758px;
-    height: 502px;
-    z-index: 50;
-} */
 
 .background #bg-door {
     position: relative;
@@ -29,8 +21,18 @@
     height: 336px;
     /* background-color: blue; */
     top: 130;
+    /* border-top: 1px solid blue;
+    border-bottom: 1px solid blue; */
 }
 
+#mice-canvas {
+    position: absolute;
+    z-index: 56;
+    width: 758px;
+    height: 336px;
+    top: 130;
+    /* border-top: 3px dotted red; */
+}
 .top-console {
     display: flex;
     flex-direction: row;
