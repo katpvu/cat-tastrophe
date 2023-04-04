@@ -13,6 +13,7 @@ class Game {
         this.mice = [];
         this.miceGenerator;
         this.movingMice;
+        this.criticalMoment;
     }
 
     //add event listeners for up/left/right keys and generate mice
@@ -44,7 +45,7 @@ class Game {
         gameConsole.addEventListener('keydown', handlers.bind(this));
 
         this.executeMovingMice();
-        setTimeout(this.stopMovingMice, 5000)
+        this.initiateCritMoment();
     }
 
     createMiceCanvas() {
@@ -96,10 +97,26 @@ class Game {
     criticalMoment() {
         this.numPointsPerKnock = 289;
         let bg = document.querySelector("#bg-door");
-        bg.src = "./assets/bright-door.jpg";
+        let flash = function() {
+            bg.src = "./assets/bright-door.jpg";
+            setTimeout(function() {
+                bg.src = "./assets/room-door.jpg";
+            }, 300)
+        }
+        this.criticalMoment = setInterval(flash(), 600)
+        let that = this;
         setTimeout( function() {
-            this.numPointsPerKnock = 59;
+            that.numPointsPerKnock = 59;
+            that.stopCriticalMoment();
         }, 5000)
+    }
+
+    stopCriticalMoment() {
+        clearInterval(this.criticalMoment);
+    }
+
+    initiateCritMoment() {
+        setInterval(this.criticalMoment, 10000)
     }
 
 
@@ -152,18 +169,17 @@ class Game {
             this.cat.dizzy(ctx);
             mouse.renderSmashedMouse(miceCtx)
             mouse.dir = 0;
-            console.log("COLLISION DETECTED")
             setTimeout( function() {
-                that.removeDrawnMouse(that.miceCtx)
+                mouse.removeDrawnMouse(that.miceCtx)
+                that.revertNormalState(ctx);
             }, 300)
-            // 
             this.mice.shift();
             this.decrementLives();
-        } else if (catLimits[0] === 150) {
+        } else if (catLimits[0] === 150 && mouse.isCollidedWith(catLimits)) {
             mouse.renderSmashedMouse(miceCtx);
             mouse.dir = 0;
             setTimeout( function() {
-                that.removeDrawnMouse(that.miceCtx)
+                mouse.removeDrawnMouse(that.miceCtx)
             }, 300)
             this.mice.shift();
         }

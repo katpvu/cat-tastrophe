@@ -7,7 +7,7 @@ class Mouse {
     setUp(randomPos) {
         if (randomPos === 1) {
             this.pos = [-100, 270];
-            this.dir = 2;
+            this.dir = 3;
         } else if (randomPos === 0) {
             this.pos = [940, 270];
             this.dir = -2;
