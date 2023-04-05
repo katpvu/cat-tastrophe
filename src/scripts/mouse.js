@@ -1,6 +1,4 @@
 class Mouse {
-    static SPEEDS = [3, 5, 7, 9];
-
     constructor(mouseCtx, index) {
         this.mouseCtx = mouseCtx;
         this.index = index
@@ -10,13 +8,14 @@ class Mouse {
 
     setUp() {
         //set up mouse pos and dir
+        const speeds = [3, 5, 7, 9];
         let direction = Math.floor(Math.random() * 2)
         if (direction === 1) {
             this.pos = [-100, 270];
-            this.dir = Mouse.SPEEDS[this.index];
+            this.dir = speeds[this.index];
         } else if (direction === 0) {
             this.pos = [940, 270];
-            this.dir = -(Mouse.SPEEDS[this.index]);
+            this.dir = -(speeds[this.index]);
         }
 
         //acquire mice png file
@@ -40,36 +39,28 @@ class Mouse {
     }
 
     isCollidedWith(catLimits) {
-        console.log(this.pos[0], 'isCollidedwith')
-        if (catLimits.length > 1 && this.pos[0] >= catLimits[0] && this.pos[0] <= catLimits[1]) {
-            this.attackNumber += 1;
-            console.log(this.pos[0],this.attackNumber, "MOUSE ATTACK CAT")
-            return true
+        if (catLimits.length > 1 ) { //checking if mouse touches cat before cat attacks
+            return this.pos[0] >= catLimits[0] && this.pos[0] <= catLimits[1];
         } else if (catLimits[0] === 150) {
-            this.attackNumber += 1;
-            console.log(this.pos[0]+50,this.attackNumber, "CAT ATTACK MOUSE LEFT")
-            return (this.pos[0] >= catLimits[0] && this.pos[0] <= 450) 
+            return this.pos[0] >= catLimits[0] && this.pos[0] <= 450;
         } else if (catLimits[0] === 600) {
-            this.attackNumber += 1;
-            console.log(this.pos[0],this.attackNumber, "CAT ATTACK MOUSE RIGHT")
-            return (this.pos[0]-50 <= catLimits[0] && this.pos[0] >= 450)
+            return this.pos[0]-50 <= catLimits[0] && this.pos[0] >= 450;
         }
-        return false;
-        
     }
 
     renderSmashedMouse(ctx) {
+        // console.log("rendering after mouse hits cat")
         if (this.dir > 0) {
-            ctx.clearRect(this.pos[0], this.pos[1], 169, 52)
-            ctx.drawImage(this.miceStates, 338, 0, 169, 52, this.pos[0], this.pos[1], 169, 52)
+            this.removeDrawnMouse()
+            this.mouseCtx.drawImage(this.miceStates, 338, 0, 169, 52, this.pos[0], this.pos[1], 169, 52)
         } else {
-            ctx.clearRect(this.pos[0], this.pos[1], 169, 52)
-            ctx.drawImage(this.miceStates, 507, 0, 169, 52, this.pos[0], this.pos[1], 169, 52)
+            this.removeDrawnMouse()
+            this.mouseCtx.drawImage(this.miceStates, 507, 0, 169, 52, this.pos[0], this.pos[1], 169, 52)
         }
     }
 
-    removeDrawnMouse(ctx) {
-        ctx.clearRect(this.pos[0], this.pos[1], 169, 52)
+    removeDrawnMouse() {
+        this.mouseCtx.clearRect(this.pos[0], this.pos[1], 169, 52)
     }
     
 }

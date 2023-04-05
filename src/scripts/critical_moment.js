@@ -19,10 +19,12 @@ class CriticalMoment {
         let that = this;
         this.game.numPointsPerKnock = 289;
         let flash = function() {
-            that.brightDoor.classList.remove("hidden");
-            setTimeout(function() {
-                that.brightDoor.classList.add("hidden");
-            }, 350)
+            if (!that.game.paused) {
+                that.brightDoor.classList.remove("hidden");
+                setTimeout(function() {
+                    that.brightDoor.classList.add("hidden");
+                }, 350)
+            }
         }
         this.criticalMoment = setInterval(flash, 700);
         

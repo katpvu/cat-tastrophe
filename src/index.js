@@ -1,7 +1,6 @@
 import Game from "./scripts/game";
 import PlayGame from "./scripts/play_game"
 import Cat from "./scripts/cat"
-import CriticalMoment from "./scripts/critical_moment"
 
 
 //Cat Canvas
@@ -17,10 +16,7 @@ catStates.addEventListener('load', (e) => {
 let cat = new Cat(catStates, catSmashes)
 let game = new Game(ctx, cat)
 
-
-
-
-//Selectors
+//Play Game button
 let playGameButtonSelector = ".play-game-button"
 document.querySelectorAll(playGameButtonSelector, game).forEach((el) => {
     new PlayGame(el, game);

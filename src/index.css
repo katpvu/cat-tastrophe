@@ -5,6 +5,7 @@
 @import url("./styles/nav_links.css");
 @import url("./styles/game_console.css");
 @import url("./styles/content_side.css");
+@import url("./styles/paused_page.css");
 
 @font-face {
     font-family: codigra;
