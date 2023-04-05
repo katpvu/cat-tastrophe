@@ -15,10 +15,12 @@
 #game-title h1 {
     color: black;
 }
-
-#game-over h1 {
+#final-score {
+    color: red;
+}
+#game-over h1:first-child {
     font-size: 64;
-    color: white
+    color: white;
 }
 
 .start-game h2, p, .play-game-button {
@@ -31,9 +33,7 @@
     color: black;
 }
 
-#final-score {
-    color: red
-}
+
 .start-game p {
     padding: 44px;
     font-size: 24px;
@@ -56,7 +56,8 @@
 }
 
 .score-box {
-    background-color: #E3E5FE;
+    background-image: url("./../assets/cat_paws_bg.jpeg");
+    background-size: 494px;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -70,4 +71,5 @@
 .hidden {
     display: none;
 }
+
 

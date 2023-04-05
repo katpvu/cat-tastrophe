@@ -56,9 +56,15 @@ table {
 /*!***********************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/main_content.css ***!
   \***********************************************************************************************************/
+.content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 50;
+}
+
 .content-main {
     position: relative;
-    background-color: #FFFFFF;
     width: 100vw;
     height: 100vh;
     position: relative;
@@ -124,10 +130,12 @@ table {
 #game-title h1 {
     color: black;
 }
-
-#game-over h1 {
+#final-score {
+    color: red;
+}
+#game-over h1:first-child {
     font-size: 64;
-    color: white
+    color: white;
 }
 
 .start-game h2, p, .play-game-button {
@@ -140,9 +148,7 @@ table {
     color: black;
 }
 
-#final-score {
-    color: red
-}
+
 .start-game p {
     padding: 44px;
     font-size: 24px;
@@ -165,7 +171,8 @@ table {
 }
 
 .score-box {
-    background-color: #E3E5FE;
+    background-image: url("./../assets/cat_paws_bg.jpeg");
+    background-size: 494px;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -179,6 +186,7 @@ table {
 .hidden {
     display: none;
 }
+
 
 
 /*!********************************************************************************************************!*\
@@ -197,10 +205,14 @@ table {
     width: 60px;
     height: 60px;
 }
+
+
 /*!***********************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/game_console.css ***!
   \***********************************************************************************************************/
 .game-console {
+    /* border: 3px dotted black; */
+    box-shadow: 0px 0px 20px rgb(234, 227, 227);
     position: relative;
     width: 758px;
     height: 502px;
@@ -265,10 +277,14 @@ table {
     position: absolute;
     z-index: 60;
     top: 30%;
-    left: 5%;
+    left: 10%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #f3f3f3e8;
+    padding: 15px 25px;
+    border-radius: 15px;
+
 }
 
 .key-button {
@@ -295,7 +311,7 @@ table {
 
 .content-side h2, h3 {
     font-family: 'Archivo', sans-serif;
-    font-weight: 100;
+    font-weight: bold;
 }
 
 .content-side h2 {
@@ -320,6 +336,25 @@ table {
 #pause-page p {
     padding: 0;
     margin: 0;
+}
+/*!*********************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/background.css ***!
+  \*********************************************************************************************************/
+body, html {
+    /* height: 100%; */
+    /* margin: 0; */
+    width: 100vw;
+    height: 100vh;
+    /* background: url('https://i.imgur.com/vHHl8Xk.jpg');
+    background-size: cover; */
+  }
+  
+.bg {
+    background-image: url("./../assets/orange-bg.jpg");
+    height: 100%;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 /*!****************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.css (1) ***!

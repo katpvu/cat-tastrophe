@@ -4,7 +4,6 @@ class PlayGame {
         this.playGameButton = playGameButton
         this.game = game;
         this.playGameButton.addEventListener('click', this.handleStartGame.bind(this));
-        
     }
 
     handleStartGame(e) {
@@ -13,15 +12,14 @@ class PlayGame {
         startPage.classList.add("hidden");
         this.playGameButton.classList.add("hidden");
         startPage.classList.remove("start-game");
+        if (this.game.firstGame) {
+            this.game.startGame();
+        } else {
+            this.game.reset();
+            this.game.startGame();
+        }
         
-        this.game.startGame();
     }
-
-    playAgain(e) {
-        e.preventDefault();
-        this.game.reset();
-    }
-
 }
 
 export default PlayGame

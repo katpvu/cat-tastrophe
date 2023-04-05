@@ -14,6 +14,7 @@ class Game {
         this.miceGenerator = [];
         this.crit = new CriticalMoment(this);
         this.paused = false;
+        this.firstGame = true;
     }
 
     startGame() {
@@ -71,8 +72,8 @@ class Game {
                 if (!this.paused) {
                     this.mice[index].push(new Mouse(this.miceCtxes[index], index))
                 }
-                
             }
+
             let delay = index === 3 ? 3000 : 2000
             let that = this;
 
@@ -151,7 +152,7 @@ class Game {
         this.lives -= 1
         let currentLives = document.querySelector("#lives")
         currentLives.innerHTML = `LIVES: ${this.lives}`
-        if (this.lives === 0) {
+        if (this.lives <= 0) {
             this.gameOver();
         }
     }
@@ -207,6 +208,7 @@ class Game {
         }
 
         this.started = false;
+        this.firstGame = false;
     }
     
     renderGameOverPage() {
@@ -220,7 +222,11 @@ class Game {
     //called in PlayGame class
     reset() {
         this.score = 0;
+        let currentScore = document.querySelector("#score");
+        currentScore.innerHTML = `SCORE: ${this.score}`
         this.lives = 9;
+        let currentLives = document.querySelector("#lives")
+        currentLives.innerHTML = `LIVES: ${this.lives}`
         this.mice = new Array(4).fill(null).map(()=>new Array().fill(null));;
         this.miceGenerator = [];
         this.movingMice = null;
@@ -236,7 +242,6 @@ class Game {
                 this.renderPausePage();
             }
         }
-        console.log(this.paused)
     }
 
     renderPausePage() {
@@ -248,12 +253,6 @@ class Game {
             pausedPage.classList.remove("start-game");
             pausedPage.classList.add("hidden")
         }
-
-        // let gameOverPage = document.querySelector("#game-over");
-        // gameOverPage.classList.remove("hidden");
-        // gameOverPage.classList.add("start-game")
-        // let finalScore = document.querySelector("#final-score");
-        // finalScore.innerHTML = this.score;
     }
 
 }
