@@ -1,4 +1,4 @@
-import Cat from "./cat";
+import CriticalMoment from "./critical_moment"
 import Mouse from "./mouse"
 
 class Game {
@@ -10,10 +10,12 @@ class Game {
         this.cat = cat;
         this.numPointsPerKnock = 59;
         this.upEventTime = Date.now();
-        this.mice = [];
-        this.miceGenerator;
+        this.mice = new Array(4).fill(null).map(()=>new Array().fill(null));;
+        // console.log(this.mice)
+        this.miceGenerator = [];
         this.movingMice;
         this.criticalMoment;
+        this.crit = new CriticalMoment(this);
     }
 
     //add event listeners for up/left/right keys and generate mice
@@ -45,22 +47,47 @@ class Game {
         gameConsole.addEventListener('keydown', handlers.bind(this));
 
         this.executeMovingMice();
-        this.initiateCritMoment();
+        this.criticalMoment = setInterval(this.crit.startCrit.bind(this.crit),7000);
     }
 
     createMiceCanvas() {
-        let miceCanvas = document.querySelector("#mice-canvas");
-        let catCanvas = document.querySelector("#cat-states")
-        miceCanvas.width = catCanvas.width;
-        miceCanvas.height = catCanvas.height;
-        this.miceCtx = miceCanvas.getContext('2d');
+        this.miceCtxes = [];
+        for (let index = 1; index < 5; index++) {
+            let miceCanvas = document.querySelector(`#mice-canvas-${index}`)
+            let catCanvas = document.querySelector("#cat-states")
+            miceCanvas.width = catCanvas.width;
+            miceCanvas.height = catCanvas.height;
+            this.miceCtxes.push(miceCanvas.getContext('2d'));
+        }
+        // console.log(this.miceCtxes)
+    }
+
+    generateMice() {
+        for (let index = 0; index < 4; index++) {
+            let createMouse = function(index) {
+                this.mice[index].push(new Mouse(this.miceCtxes[index], index))
+            }
+            let delay = index === 3 ? 3000 : 2000
+            let that = this;
+            let setMiceGenIntervals = function(index) {
+                console.log(index)
+                that.miceGenerator.push(setInterval(createMouse.bind(that,index), delay))
+            }
+            let timeStart = index === 0 ? 0 : index === 1 ? 5000 : index === 2 ? 10000 : 15000;
+            setTimeout(setMiceGenIntervals.bind(this, index), timeStart)
+        }
+        
+    }
+
+    stopGeneratingMice() {
+        this.miceGenerator.forEach((gen) => clearInterval(gen))
+        // clearInterval(this.miceGenerator)
     }
 
     executeMovingMice() {
         function fcn() {
             this.moveMice();
         }
-
         this.movingMice = setInterval(fcn.bind(this), 20);
     }
 
@@ -68,57 +95,19 @@ class Game {
         clearInterval(this.movingMice);
     }
 
-    generateMice() {
-        let createMouse = function() {
-            this.mice.push(new Mouse(Math.floor(Math.random() * 2)))
-            console.log(this.mice)
-        }
-        this.miceGenerator = setInterval(createMouse.bind(this), 2000)
-    }
-
-    stopGeneratingMice() {
-        clearInterval(this.miceGenerator)
-    }
-
     moveMice() {
-        this.mice.forEach((mouse) => {
-            mouse.move();
-            console.log(this.mice)
-            this.checkCollision(mouse, this.cat.limits, this.ctx, this.miceCtx);
-            mouse.draw(this.miceCtx);
+        this.mice.forEach((mouseArray) => {
+            mouseArray.forEach((mouse) => {
+                mouse.move();
+                this.checkCollision(mouse, this.cat.limits, this.ctx, mouse.mouseCtx);
+                mouse.draw(mouse.mouseCtx);
+            })
         })
     }
 
     revertNormalState(ctx) {
         this.cat.renderNormalState(ctx)
     }
-
-    //this is working -- for critical moment - need to switch between normal and bright door
-    criticalMoment() {
-        this.numPointsPerKnock = 289;
-        let bg = document.querySelector("#bg-door");
-        let flash = function() {
-            bg.src = "./assets/bright-door.jpg";
-            setTimeout(function() {
-                bg.src = "./assets/room-door.jpg";
-            }, 300)
-        }
-        this.criticalMoment = setInterval(flash(), 600)
-        let that = this;
-        setTimeout( function() {
-            that.numPointsPerKnock = 59;
-            that.stopCriticalMoment();
-        }, 5000)
-    }
-
-    stopCriticalMoment() {
-        clearInterval(this.criticalMoment);
-    }
-
-    initiateCritMoment() {
-        setInterval(this.criticalMoment, 10000)
-    }
-
 
     //knock - change img to knock state, increase score points 
     handleUpKey(ctx) {
@@ -129,16 +118,20 @@ class Game {
     //left smash - change img to smash state - if successful, remove mouse
     handleLeftKey(ctx) {
         this.cat.smashLeft(ctx);
-        this.mice.forEach((mouse) => {
-            this.successfulSmash(mouse);
+        this.mice.forEach((mouseArray) => {
+            mouseArray.forEach((mouse) => {
+                this.successfulSmash(mouse, [150]);
+            })
         })
     }
 
     //right smash - change img to smash state - if successful, remove mouse
     handleRightKey(ctx) {
         this.cat.smashRight(ctx);
-        this.mice.forEach((mouse) => {
-            this.successfulSmash(mouse);
+        this.mice.forEach((mouseArray) => {
+            mouseArray.forEach((mouse) => {
+                this.successfulSmash(mouse, [600]);
+            })
         })
     }
 
@@ -157,41 +150,47 @@ class Game {
         }
     }
 
-    successfulSmash(mouse) {
-        let smashLimits = [150, 600];
-        this.checkCollision(mouse, smashLimits, this.ctx, this.miceCtx)
+    successfulSmash(mouse, smashLimit) {
+        // let smashLimits = [150, 600];
+        console.log(mouse)
+        this.checkCollision(mouse, smashLimit, this.ctx, mouse.mouseCtx)
     }
 
-    checkCollision(mouse, catLimits, ctx, miceCtx) {
+    checkCollision(mouse, catLimits, ctx, mouseCtx) {
+        console.log(mouse)
         let that = this;
-        console.log("checking collision")
         if (catLimits[0] === 300 && mouse.isCollidedWith(catLimits)) {
             this.cat.dizzy(ctx);
-            mouse.renderSmashedMouse(miceCtx)
+            mouse.renderSmashedMouse(mouseCtx);
             mouse.dir = 0;
             setTimeout( function() {
-                mouse.removeDrawnMouse(that.miceCtx)
+                
+                mouse.removeDrawnMouse(mouse.mouseCtx)
                 that.revertNormalState(ctx);
             }, 300)
-            this.mice.shift();
+            this.remove(mouse);
             this.decrementLives();
-        } else if (catLimits[0] === 150 && mouse.isCollidedWith(catLimits)) {
-            mouse.renderSmashedMouse(miceCtx);
+        } else if ((catLimits[0] === 150 || catLimits[0] === 600) && mouse.isCollidedWith(catLimits)) {
+            mouse.renderSmashedMouse(mouse.mouseCtx);
             mouse.dir = 0;
             setTimeout( function() {
-                mouse.removeDrawnMouse(that.miceCtx)
+                mouse.removeDrawnMouse(mouse.mouseCtx)
             }, 300)
-            this.mice.shift();
+            this.remove(mouse);
         }
     }
 
     remove(mouse) {
-
+        let mouseArrayIndex = mouse.index
+        let index = this.mice[mouseArrayIndex].indexOf(mouse);
+        this.mice[mouseArrayIndex].splice(index)
     }
 
     gameOver() {
         this.stopMovingMice();
         this.stopGeneratingMice();
+        this.crit.stopCriticalMoment();
+        clearInterval(this.criticalMoment);
 
         //render game over page
         let gameOverPage = document.querySelector("#game-over");

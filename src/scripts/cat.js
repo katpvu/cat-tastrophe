@@ -1,18 +1,9 @@
 class Cat {
-
     constructor(catStates, catSmashes) {
         this.catStates = catStates;
         this.catSmashes = catSmashes;
         this.limits = [300, 500];
-        // this.catSmashes();
     }
-
-    // catSmashes() {
-    //     let smashImage = document.createElement("img");
-    //     smashImage.src = "./assets/cat_smash.png";
-    //     document.querySelector(".game-console").appendChild(smashImage)
-    //     this.catSmashes = smashImage;
-    // }
 
     drawState(ctx, imageLoc) { //done
         ctx.drawImage(this.catStates, imageLoc, 0, 234, 336, 355, 0, 234, 336)

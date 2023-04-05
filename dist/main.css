@@ -1,7 +1,7 @@
 /*!************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.css ***!
   \************************************************************************************************************************************/
-@import url(https://fonts.googleapis.com/css2?family=Italiana&family=KoHo:wght@300&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Archivo:wght@100;400&family=Italiana&family=KoHo:wght@300&display=swap);
 /*!********************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/css_reset.css ***!
   \********************************************************************************************************/
@@ -70,12 +70,14 @@ table {
 }
 
 .content-main h1 {
-    font-family: 'Italiana', serif;
+    font-family: 'Archivo', sans-serif;
     font-size: 64px;
+    color: rgb(42, 40, 40);
 }
 
 .content-main h2 {
-    font-family: 'Italiana', serif;
+    font-family: 'Archivo', sans-serif;
+    letter-spacing: 2px;
     font-size: 36px;
 }
 
@@ -88,6 +90,19 @@ table {
 
 #game-title {
     margin-bottom: 15px;
+}
+
+#game-title h1 {
+    font-family: codigra;
+    font-size: 96px;
+    text-shadow: -2px 2px 3px #939393;
+    letter-spacing: 7px;
+}
+
+@media only screen and (max-width: 924px) {
+    #game-title h1 {
+        font-size: 82px;
+    }
 }
 /*!**************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/start_game_over.css ***!
@@ -193,7 +208,7 @@ table {
     z-index: 45;
 }
 
-.background #bg-door {
+.bg-door {
     position: relative;
     width: 758px;
     height: 502px;
@@ -201,25 +216,29 @@ table {
     border-radius: 18px;
 }
 
+.flashing-door {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 52;
+}
+
 #cat-state {
     position: absolute;
     z-index: 53;
     width: 758px;
     height: 336px;
-    /* background-color: blue; */
     top: 130;
-    /* border-top: 1px solid blue;
-    border-bottom: 1px solid blue; */
 }
 
-#mice-canvas {
+#mice-canvas-1, #mice-canvas-2, #mice-canvas-3, #mice-canvas-4 {
     position: absolute;
     z-index: 56;
     width: 758px;
     height: 336px;
     top: 130;
-    /* border-top: 3px dotted red; */
 }
+
 .top-console {
     display: flex;
     flex-direction: row;
@@ -275,14 +294,28 @@ table {
 }
 
 .content-side h2, h3 {
-    font-family: 'KoHo', sans-serif;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 100;
 }
 
 .content-side h2 {
     font-size: 36px;
     letter-spacing: 1px;
 }
+
+@media only screen and (max-width: 1355px) {
+    .content-side {
+        display: none;
+    }
+}
 /*!****************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.css (1) ***!
   \****************************************************************************************************************************************/
-
+@font-face {
+  font-family: codigra;
+  src: url("./../assets/Codigra.ttf");
+}
+@font-face {
+  font-family: bunny;
+  src: url("./../assets/bunny.ttf");
+}

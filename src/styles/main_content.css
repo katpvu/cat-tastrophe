@@ -12,12 +12,14 @@
 }
 
 .content-main h1 {
-    font-family: 'Italiana', serif;
+    font-family: 'Archivo', sans-serif;
     font-size: 64px;
+    color: rgb(42, 40, 40);
 }
 
 .content-main h2 {
-    font-family: 'Italiana', serif;
+    font-family: 'Archivo', sans-serif;
+    letter-spacing: 2px;
     font-size: 36px;
 }
 
@@ -30,4 +32,17 @@
 
 #game-title {
     margin-bottom: 15px;
+}
+
+#game-title h1 {
+    font-family: codigra;
+    font-size: 96px;
+    text-shadow: -2px 2px 3px #939393;
+    letter-spacing: 7px;
+}
+
+@media only screen and (max-width: 924px) {
+    #game-title h1 {
+        font-size: 82px;
+    }
 }
