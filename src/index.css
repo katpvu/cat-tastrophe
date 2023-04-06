@@ -7,6 +7,7 @@
 @import url("./styles/content_side.css");
 @import url("./styles/paused_page.css");
 @import url("./styles/background.css");
+@import url("./styles/modal.css");
 
 @font-face {
     font-family: codigra;

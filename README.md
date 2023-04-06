@@ -60,8 +60,12 @@ In addition, this project will include:
   
 
 * Tuesday:
+  * Add sprite sheets and drawImage methods.
 
 * Wednesday:
+  * Focus on game pause and game reset. 
+  * Debugging
+  * 
 
 * Thursday Morning: Deploy to GitHub pages and rewrite this proposal as a production README.
  
