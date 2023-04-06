@@ -5,27 +5,24 @@ class Cat {
         this.limits = [300, 500];
     }
 
-    drawState(ctx, imageLoc) { //done
-        ctx.drawImage(this.catStates, imageLoc, 0, 234, 336, 355, 0, 234, 336)
+    drawState(ctx, frame) { //done
+        ctx.drawImage(this.catStates, 234 * frame, 0, 234, 336, 355, 0, 234, 336)
     }
 
     renderNormalState(ctx) { //done
         ctx.clearRect(355, 0, 234, 336);
         ctx.clearRect(250, 0, 500, 400);
-        let imageLoc = 0;
-        this.drawState(ctx, imageLoc);
+        this.drawState(ctx, 0);
     }
 
     knock(ctx) { //done
         ctx.clearRect(355, 0, 234, 336);
-        let imageLoc = 234;
-        this.drawState(ctx, imageLoc);
+        this.drawState(ctx, 1);
     }
 
     dizzy(ctx){ //done
         ctx.clearRect(355, 0, 234, 336);
-        let imageLoc = 468;
-        this.drawState(ctx, imageLoc);
+        this.drawState(ctx, 2);
     }
 
     smashLeft(ctx){

@@ -18,7 +18,6 @@ class PlayGame {
             this.game.reset();
             this.game.startGame();
         }
-        
     }
 }
 

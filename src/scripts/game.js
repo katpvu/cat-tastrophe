@@ -16,10 +16,10 @@ class Game {
         this.paused = false;
         this.firstGame = true;
         this.revertNormalState(ctx);
+        window.addEventListener('keydown', this.handlePause.bind(this))
     }
 
     startGame() {
-        window.addEventListener('keydown', this.handlePause.bind(this))
         this.started = true;
         this.setUp();
         this.createMiceCanvas()
@@ -73,6 +73,7 @@ class Game {
             let createMouse = function(index) {
                 if (!this.paused) {
                     this.mice[index].push(new Mouse(this.miceCtxes[index], index))
+                    // console.log(this.mice[0], "mice array")
                 }
             }
 
@@ -93,7 +94,6 @@ class Game {
 
     stopGeneratingMice() {
         this.miceGenerator.forEach((gen) => clearInterval(gen))
-        // clearInterval(this.miceGenerator)
     }
 
     executeMovingMice() {
@@ -106,8 +106,8 @@ class Game {
         flattenedMiceArray.forEach((mouse) => {
             if (!this.paused) {
                 mouse.move();
+                mouse.draw();
                 this.checkCollision(mouse, this.cat.limits, this.ctx);
-                mouse.draw(mouse.mouseCtx);
             }
         })
     }
@@ -160,16 +160,18 @@ class Game {
     }
 
     successfulSmash(mouse, smashLimit) {
-        this.checkCollision(mouse, smashLimit, this.ctx, mouse.mouseCtx)
+        this.checkCollision(mouse, smashLimit, this.ctx, true)
     }
 
     checkCollision(mouse, catLimits, ctx) {
-        let attack = false;
         let that = this;
-        
-
-        console.log(mouse, "check collision mouse")
-        if (catLimits.length === 2 && mouse.isCollidedWith(catLimits)) {
+        if ((catLimits[0] === 150 || catLimits[0] === 600) && mouse.isCollidedWith(catLimits)) {
+            mouse.renderSmashedMouse();
+            setTimeout( function() {
+                mouse.removeDrawnMouse()
+            }, 300)
+            this.remove(mouse);
+        } else if (catLimits.length === 2 && mouse.isCollidedWith(catLimits)) {
             this.cat.dizzy(ctx);
             mouse.renderSmashedMouse();
             setTimeout( function() {
@@ -178,20 +180,13 @@ class Game {
             }, 300)
             this.remove(mouse);
             this.decrementLives();
-        } else if ((catLimits[0] === 150 || catLimits[0] === 600) && mouse.isCollidedWith(catLimits)) {
-            mouse.renderSmashedMouse();
-            setTimeout( function() {
-                mouse.removeDrawnMouse()
-            }, 300)
-            this.remove(mouse);
         }
-        console.log(this.mice)
     }
 
     remove(mouse) {
-        let mouseArrayIndex = mouse.index
+        let mouseArrayIndex = mouse.index;
         let index = this.mice[mouseArrayIndex].indexOf(mouse);
-        this.mice[mouseArrayIndex].splice(index)
+        this.mice[mouseArrayIndex].splice(index, 1);
     }
 
     clearIntervals() {
@@ -222,6 +217,9 @@ class Game {
         gameOverPage.classList.add("start-game")
         let finalScore = document.querySelector("#final-score");
         finalScore.innerHTML = this.score;
+        let playAgainButton = document.querySelector("#play-again-button")
+        playAgainButton.classList.remove("hidden");
+
     }
 
     //called in PlayGame class
@@ -237,13 +235,16 @@ class Game {
         this.movingMice = null;
         this.criticalMoment = null;
         this.crit = new CriticalMoment(this);
+        this.paused = false;
     }
 
     handlePause(e) {
         e = e || window.event;
         if (e.keyCode === 32) {
             if (this.started) {
+                console.log("press PAUSE")
                 this.paused = this.paused === false ? true : false;
+                console.log(this.paused, "pause state")
                 this.renderPausePage();
             }
         }

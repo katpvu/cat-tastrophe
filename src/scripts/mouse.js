@@ -19,26 +19,20 @@ class Mouse {
         }
 
         //acquire mice png file
-        let mice = document.querySelector("#mice")
+        let mice = document.querySelector("#mice");
         this.miceStates = mice;
     }
 
-    draw(ctx) {
-        if (this.dir > 0) {
-            ctx.clearRect(this.pos[0], this.pos[1], 169, 52)
-            ctx.drawImage(this.miceStates, 0, 0, 169, 52, this.pos[0], this.pos[1], 169, 52)
-        } else {
-            ctx.clearRect(this.pos[0], this.pos[1], 169, 52)
-            ctx.drawImage(this.miceStates, 169, 0, 169, 52, this.pos[0], this.pos[1], 169, 52)
-        }
-        
+    draw() {
+        this.removeDrawnMouse();
+        this.drawMouse(this.dir > 0 ? 0 : 1);
     }
 
     move() {
         this.pos[0] += this.dir;
     }
 
-    isCollidedWith(catLimits) {
+    isCollidedWith(catLimits, attack=true) {
         if (catLimits.length > 1 ) { //checking if mouse touches cat before cat attacks
             return this.pos[0] >= catLimits[0] && this.pos[0] <= catLimits[1];
         } else if (catLimits[0] === 150) {
@@ -48,15 +42,13 @@ class Mouse {
         }
     }
 
-    renderSmashedMouse(ctx) {
-        // console.log("rendering after mouse hits cat")
-        if (this.dir > 0) {
-            this.removeDrawnMouse()
-            this.mouseCtx.drawImage(this.miceStates, 338, 0, 169, 52, this.pos[0], this.pos[1], 169, 52)
-        } else {
-            this.removeDrawnMouse()
-            this.mouseCtx.drawImage(this.miceStates, 507, 0, 169, 52, this.pos[0], this.pos[1], 169, 52)
-        }
+    renderSmashedMouse() {
+        this.removeDrawnMouse();
+        this.drawMouse(this.dir > 0 ? 2 : 3);
+    }
+
+    drawMouse(frame) {
+        this.mouseCtx.drawImage(this.miceStates, 169 * frame, 0, 169, 52, this.pos[0], this.pos[1], 169, 52);
     }
 
     removeDrawnMouse() {
