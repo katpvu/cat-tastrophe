@@ -15,7 +15,7 @@ class Game {
         this.crit = new CriticalMoment(this);
         this.paused = false;
         this.firstGame = true;
-        this.revertNormalState(ctx);
+        this.revertNormalState(this.ctx);
         window.addEventListener('keydown', this.handlePause.bind(this))
     }
 
@@ -73,7 +73,6 @@ class Game {
             let createMouse = function(index) {
                 if (!this.paused) {
                     this.mice[index].push(new Mouse(this.miceCtxes[index], index))
-                    // console.log(this.mice[0], "mice array")
                 }
             }
 
@@ -99,7 +98,6 @@ class Game {
     executeMovingMice() {
         this.movingMice = setInterval(this.moveMice.bind(this), 20);
     }
-
 
     moveMice() {
         let flattenedMiceArray = this.mice.flat();
@@ -138,9 +136,7 @@ class Game {
         this.cat.smashRight(ctx);
         let flattenedMiceArray = this.mice.flat();
         flattenedMiceArray.forEach((mouse) => {
-            if (mouse.pos[0] < 700) {
-                this.successfulSmash(mouse, [600]);
-            }
+            if (mouse.pos[0] < 700) this.successfulSmash(mouse, [600]);
         })
     }
 
@@ -154,9 +150,7 @@ class Game {
         this.lives -= 1
         let currentLives = document.querySelector("#lives")
         currentLives.innerHTML = `LIVES: ${this.lives}`
-        if (this.lives <= 0) {
-            this.gameOver();
-        }
+        if (this.lives <= 0) this.gameOver();
     }
 
     successfulSmash(mouse, smashLimit) {
@@ -167,9 +161,7 @@ class Game {
         let that = this;
         if ((catLimits[0] === 150 || catLimits[0] === 600) && mouse.isCollidedWith(catLimits)) {
             mouse.renderSmashedMouse();
-            setTimeout( function() {
-                mouse.removeDrawnMouse()
-            }, 300)
+            setTimeout( function() { mouse.removeDrawnMouse() }, 300)
             this.remove(mouse);
         } else if (catLimits.length === 2 && mouse.isCollidedWith(catLimits)) {
             this.cat.dizzy(ctx);
