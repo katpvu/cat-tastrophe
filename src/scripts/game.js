@@ -15,6 +15,7 @@ class Game {
         this.crit = new CriticalMoment(this);
         this.paused = false;
         this.firstGame = true;
+        this.revertNormalState(ctx);
     }
 
     startGame() {
@@ -28,7 +29,8 @@ class Game {
     }
 
     setUp() {
-        let gameConsole = document.querySelector("body")
+        let gameConsole = document.querySelector("body");
+        
 
         function handlers(e) {
             e = e || window.event;
@@ -162,8 +164,11 @@ class Game {
     }
 
     checkCollision(mouse, catLimits, ctx) {
+        let attack = false;
         let that = this;
-        // console.log(mouse, "check collision mouse")
+        
+
+        console.log(mouse, "check collision mouse")
         if (catLimits.length === 2 && mouse.isCollidedWith(catLimits)) {
             this.cat.dizzy(ctx);
             mouse.renderSmashedMouse();
@@ -180,7 +185,7 @@ class Game {
             }, 300)
             this.remove(mouse);
         }
-        // console.log(this.mice)
+        console.log(this.mice)
     }
 
     remove(mouse) {
