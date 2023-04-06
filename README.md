@@ -11,10 +11,10 @@ The number of mice as well as the speed in which the mice travels will increase,
 
 ### Features
 * One of my challenges was generating mice of varying speeds at specific times of gameplay. Using a single canvas to render and clear overlapping mice was an issue early into my development. I figured that creating multiple canvases and stacking them on top of each other solves this issue. Additionally, implementing several setIntervals and setTimeouts allowed me to generate mice of differing speeds all at the same time!
-* Before learning about sprite sheets, I unknowingly created my very own. I drew out all the cat and mice states on separate files before discovering the efficiency of combining them all into a singular file with all of them being equal frame size. 
+* Before learning about sprite sheets, I unknowingly created my very own. I drew out all the cat and mice states on separate files before discovering the efficiency of combining them all into a singular file with all of them being equal frame size. With this, it condensed my code and made it easier to render specific states if their corresponding conditions were met.
 
 ### Features on the Backlog
-I would love to add more features to make the user experience much more smooth, and make the game more difficult than it seems. Here are some features that shall be considered in the future:
+I would love to add more features to make the user experience much more smooth, and make the game more difficult than it seems. Here are some features that are being considered for the future:
 * Delay between each keypress. Currently, the user is able to press all the keys at the same time and the program is able to execute handlers for each keypress. There will be restrictions and delays between each key press to prevent instant canvas drawing and clearing. In order to implement this, adding a condition where after each key press, the event listeners are removed for a certain amount of time before adding them again.
 * Freezing the cat after failed mice attack. Currently, the player is able to make a attack and miss without any consequences. There will be an update to this where the player will be unable to produce any plays and is vulnerable to losing lives for 1 second.
 
