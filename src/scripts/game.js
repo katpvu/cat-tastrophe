@@ -30,11 +30,10 @@ class Game {
 
     setUp() {
         let gameConsole = document.querySelector("body");
-        
-
         function handlers(e) {
             e = e || window.event;
-            if (!this.paused) {
+            if (!this.paused ) {
+                setTimeout(() => this.delayed = false, 3000)
                 if (e.keyCode === 38) {
                     if (Date.now() - this.upEventTime > 500) {
                         this.upEventTime = Date.now();
@@ -51,9 +50,7 @@ class Game {
                     that.revertNormalState(that.ctx);
                 }, 300)
             }
-            
         }
-
         gameConsole.addEventListener('keydown', handlers.bind(this));
     }
 
@@ -75,7 +72,6 @@ class Game {
                     this.mice[index].push(new Mouse(this.miceCtxes[index], index))
                 }
             }
-
             let delay = index === 3 ? 3000 : 2000
             let that = this;
 
@@ -84,7 +80,6 @@ class Game {
                     that.miceGenerator.push(setInterval(createMouse.bind(that,index), delay))
                 }
             }
-
             let timeStart = index === 0 ? 0 : index === 1 ? 5000 : index === 2 ? 10000 : 15000;
             setTimeout(setMiceGenIntervals.bind(this, index), timeStart)
         }
