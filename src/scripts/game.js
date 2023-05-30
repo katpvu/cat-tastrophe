@@ -1,6 +1,7 @@
 import CriticalMoment from "./critical_moment"
 import Mouse from "./mouse"
 
+
 class Game {
     constructor(ctx, cat) {
         this.started = false;
@@ -15,6 +16,7 @@ class Game {
         this.crit = new CriticalMoment(this);
         this.paused = false;
         this.firstGame = true;
+        // this.knockSound = document.querySelector('#cat-knock-audio')
         this.revertNormalState(this.ctx);
         window.addEventListener('keydown', this.handlePause.bind(this))
     }
@@ -29,29 +31,41 @@ class Game {
     }
 
     setUp() {
-        let gameConsole = document.querySelector("body");
-        function handlers(e) {
-            e = e || window.event;
-            if (!this.paused ) {
-                setTimeout(() => this.delayed = false, 3000)
-                if (e.keyCode === 38) {
-                    if (Date.now() - this.upEventTime > 500) {
-                        this.upEventTime = Date.now();
-                        this.handleUpKey(this.ctx);
-                    }
-                } else if (e.keyCode === 37) { 
+        this.enableKeyPresses();
+    }
+
+    handlers(e) {
+        e = e || window.event;
+        if (!this.paused) {
+            setTimeout(() => this.delayed = false, 3000)
+            if (e.keyCode === 38) {
+                if (Date.now() - this.upEventTime > 500) {
+                    this.upEventTime = Date.now();
+                    this.handleUpKey(this.ctx);
+                }
+            } else if (e.keyCode === 37) { 
+                if (Date.now() - this.upEventTime > 200) {
+                    this.upEventTime = Date.now();
                     this.handleLeftKey(this.ctx);
-                } else if (e.keyCode === 39) {
+                }
+                // this.handleLeftKey(this.ctx);
+            } else if (e.keyCode === 39) {
+                if (Date.now() - this.upEventTime > 200) {
+                    this.upEventTime = Date.now();
                     this.handleRightKey(this.ctx);
-                } 
-                //need to revert back to normal state after every move
-                let that = this;
-                setTimeout( function() {
-                    that.revertNormalState(that.ctx);
-                }, 300)
-            }
+                }
+                // this.handleRightKey(this.ctx);
+            } 
+            //need to revert back to normal state after every move
+            let that = this;
+            setTimeout( function() {
+                that.revertNormalState(that.ctx);
+            }, 300)
         }
-        gameConsole.addEventListener('keydown', handlers.bind(this));
+    }
+    enableKeyPresses() {
+        let gameConsole = document.querySelector("body");
+        gameConsole.addEventListener('keydown', this.handlers.bind(this));
     }
 
     createMiceCanvas() {
@@ -109,10 +123,12 @@ class Game {
         this.cat.renderNormalState(ctx)
     }
 
+
     //knock - change img to knock state, increase score points 
     handleUpKey(ctx) {
         this.updateScore();
         this.cat.knock(ctx);
+        
     }
 
     //left smash - change img to smash state - if successful, remove mouse
@@ -196,6 +212,7 @@ class Game {
 
         this.started = false;
         this.firstGame = false;
+        this.paused = true;
     }
     
     renderGameOverPage() {
@@ -206,6 +223,7 @@ class Game {
         finalScore.innerHTML = this.score;
         let playAgainButton = document.querySelector("#play-again-button")
         playAgainButton.classList.remove("hidden");
+ 
 
     }
 
@@ -229,9 +247,7 @@ class Game {
         e = e || window.event;
         if (e.keyCode === 32) {
             if (this.started) {
-                console.log("press PAUSE")
                 this.paused = this.paused === false ? true : false;
-                console.log(this.paused, "pause state")
                 this.renderPausePage();
             }
         }
