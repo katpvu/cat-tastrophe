@@ -17,7 +17,7 @@ class Game {
         this.paused = false;
         this.firstGame = true;
         // this.knockSound = document.querySelector('#cat-knock-audio')
-        this.cat.renderNormalState(ctx)
+        this.cat.renderNormalState(ctx);
         window.addEventListener('keydown', this.handlePause.bind(this))
     }
 
