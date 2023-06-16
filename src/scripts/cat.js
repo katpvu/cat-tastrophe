@@ -10,6 +10,7 @@ class Cat {
     }
 
     renderNormalState(ctx) { 
+        console.log("successfully rendered")
         ctx.clearRect(355, 0, 234, 336);
         ctx.clearRect(250, 0, 500, 400);
         this.drawState(ctx, 0);
