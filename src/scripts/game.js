@@ -32,6 +32,7 @@ class Game {
 
     setUp() {
         this.enableKeyPresses();
+        this.revertNormalState(this.ctx);
     }
 
     handlers(e) {
