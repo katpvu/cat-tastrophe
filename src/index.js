@@ -12,9 +12,9 @@ canvas.height = catStates.height;
 const ctx = canvas.getContext('2d');
 let cat = new Cat(catStates, catSmashes)
 let game = new Game(ctx, cat)
-catStates.addEventListener('load', (e) => {
+catStates.addEventListener('load', (e) => 
     ctx.drawImage(catStates, 0, 0, 234, 336, 355, 0, 234, 336)
-})
+)
 
 //Play Game button
 let playGameButtonSelector = ".play-game-button"
