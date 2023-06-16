@@ -22,6 +22,7 @@ class Game {
     }
 
     startGame() {
+        this.cat.renderNormalState(ctx)
         this.started = true;
         this.setUp();
         this.createMiceCanvas()
